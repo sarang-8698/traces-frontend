@@ -1,5 +1,8 @@
-// const BASE_URL = "http://localhost:5000/api/traces";
-const BASE_URL = "https://traces-backend.onrender.com/api/traces";
+const BASE_URL =
+  // Checks if the current page is served from localhost (development environment)
+  window.location.hostname === "localhost"
+    ? "http://localhost:3000/api/traces"
+    : "https://traces-backend.onrender.com/api/traces";
 // Retry configuration
 const MAX_RETRIES = 3;
 const RETRY_DELAY = 1000;
