@@ -23,7 +23,8 @@ const DEFAULT_COLUMNS = {
 };
 
 const ObservePage = () => {
-  const { data, total, loading, filters, setFilters, toggleCardFilter } = useTraces();
+  const { data, total, loading, filters, setFilters, toggleCardFilter } =
+    useTraces();
   const [selectedTrace, setSelectedTrace] = useState(null);
   const [visibleColumns, setVisibleColumns] = useState(DEFAULT_COLUMNS);
 
@@ -59,7 +60,10 @@ const ObservePage = () => {
 
       {selectedTrace && (
         <Suspense fallback={<div className="fixed inset-0 bg-black/50 z-40" />}>
-          <TraceDrawer trace={selectedTrace} onClose={() => setSelectedTrace(null)} />
+          <TraceDrawer
+            trace={selectedTrace}
+            onClose={() => setSelectedTrace(null)}
+          />
         </Suspense>
       )}
     </div>

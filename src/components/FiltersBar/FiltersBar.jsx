@@ -58,9 +58,9 @@ const FiltersBar = memo(
 
     const removeCardFilter = useCallback(
       (filterKey) => {
-          setFilters((prev) => ({
-            ...prev,
-            page: 1,
+        setFilters((prev) => ({
+          ...prev,
+          page: 1,
           activeCards: (prev.activeCards || []).filter((k) => k !== filterKey),
         }));
       },
@@ -408,18 +408,18 @@ const FiltersBar = memo(
                 </button>
               </span>
             )}
-      <button
+            <button
               onClick={clearAll}
               className="text-teal-400 text-xs sm:text-sm hover:text-teal-300 ml-2"
-      >
+            >
               Clear all
-      </button>
-    </div>
+            </button>
+          </div>
         )}
       </div>
     );
   }
-  );
+);
 
 FiltersBar.displayName = "FiltersBar";
 

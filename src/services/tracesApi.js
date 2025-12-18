@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:4000/api/traces";
+const BASE_URL = "http://localhost:5000/api/traces";
 
 // Retry configuration
 const MAX_RETRIES = 3;
@@ -9,10 +9,10 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const fetchWithRetry = async (url, options = {}, retries = MAX_RETRIES) => {
   try {
     const res = await fetch(url, options);
-  if (!res.ok) {
+    if (!res.ok) {
       throw new Error(`HTTP ${res.status}: ${res.statusText}`);
-  }
-  return res.json();
+    }
+    return res.json();
   } catch (error) {
     if (retries > 0 && !options.signal?.aborted) {
       await sleep(RETRY_DELAY);
@@ -25,12 +25,14 @@ const fetchWithRetry = async (url, options = {}, retries = MAX_RETRIES) => {
 export const fetchTraces = async (params = {}, signal) => {
   // Clean up params - remove empty values
   const cleanParams = Object.fromEntries(
-    Object.entries(params).filter(([_, v]) => v !== "" && v !== null && v !== undefined)
+    Object.entries(params).filter(
+      ([_, v]) => v !== "" && v !== null && v !== undefined
+    )
   );
-  
+
   const query = new URLSearchParams(cleanParams).toString();
   const url = query ? `${BASE_URL}?${query}` : BASE_URL;
-  
+
   return fetchWithRetry(url, { signal });
 };
 
@@ -40,8 +42,18 @@ export const fetchMetrics = async () => {
 
 // Export trace data as CSV
 export const exportTracesAsCSV = (traces) => {
-  const headers = ["ID", "Name", "Status", "Agent", "Application", "Duration", "Timestamp", "Anomalous", "Sensitive Data"];
-  
+  const headers = [
+    "ID",
+    "Name",
+    "Status",
+    "Agent",
+    "Application",
+    "Duration",
+    "Timestamp",
+    "Anomalous",
+    "Sensitive Data",
+  ];
+
   const rows = traces.map((t) => [
     t.id,
     t.name,
@@ -53,11 +65,11 @@ export const exportTracesAsCSV = (traces) => {
     t.isAnomalous ? "Yes" : "No",
     t.hasSensitiveData ? "Yes" : "No",
   ]);
-  
+
   const csvContent = [headers, ...rows]
     .map((row) => row.map((cell) => `"${cell}"`).join(","))
     .join("\n");
-  
+
   const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");

@@ -62,7 +62,10 @@ const VirtualizedTable = memo(({ data, renderRow, columns }) => {
             <div
               key={col.key}
               className="p-3 text-left font-medium text-xs uppercase tracking-wider text-gray-400"
-              style={{ width: col.width || "auto", minWidth: col.minWidth || "100px" }}
+              style={{
+                width: col.width || "auto",
+                minWidth: col.minWidth || "100px",
+              }}
             >
               {col.label}
             </div>
@@ -87,6 +90,3 @@ const VirtualizedTable = memo(({ data, renderRow, columns }) => {
 VirtualizedTable.displayName = "VirtualizedTable";
 
 export default VirtualizedTable;
-
-
-

@@ -21,13 +21,13 @@ const useTraces = () => {
   // Debounce search input (but clear immediately if empty)
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
-    
+
     // If search is empty, clear immediately
     if (!filters.search || !filters.search.trim()) {
       setDebouncedSearch("");
       return;
     }
-    
+
     // Otherwise debounce
     debounceRef.current = setTimeout(() => {
       setDebouncedSearch(filters.search.trim());
@@ -48,8 +48,10 @@ const useTraces = () => {
     if (debouncedSearch && debouncedSearch.trim()) {
       params.search = debouncedSearch.trim();
     }
-    if (filters.timeRange && filters.timeRange !== "all") params.timeRange = filters.timeRange;
-    if (filters.activeCards?.length > 0) params.activeCards = JSON.stringify(filters.activeCards);
+    if (filters.timeRange && filters.timeRange !== "all")
+      params.timeRange = filters.timeRange;
+    if (filters.activeCards?.length > 0)
+      params.activeCards = JSON.stringify(filters.activeCards);
 
     fetchTraces(params)
       .then((res) => {
@@ -62,13 +64,19 @@ const useTraces = () => {
         setTotal(0);
       })
       .finally(() => setLoading(false));
-  }, [filters.page, filters.limit, filters.timeRange, filters.activeCards, debouncedSearch]);
+  }, [
+    filters.page,
+    filters.limit,
+    filters.timeRange,
+    filters.activeCards,
+    debouncedSearch,
+  ]);
 
   const toggleCardFilter = useCallback((filterKey) => {
     setFilters((prev) => {
       const activeCards = prev.activeCards || [];
       const isActive = activeCards.includes(filterKey);
-  return {
+      return {
         ...prev,
         page: 1,
         activeCards: isActive

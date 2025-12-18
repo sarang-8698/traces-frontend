@@ -17,13 +17,23 @@ const Pagination = memo(({ total, page, limit, setFilters }) => {
     return pages;
   }, [page, totalPages]);
 
-  const goToPage = useCallback((p) => {
-    setFilters((prev) => ({ ...prev, page: p }));
-  }, [setFilters]);
+  const goToPage = useCallback(
+    (p) => {
+      setFilters((prev) => ({ ...prev, page: p }));
+    },
+    [setFilters]
+  );
 
-  const handleLimitChange = useCallback((e) => {
-    setFilters((prev) => ({ ...prev, limit: Number(e.target.value), page: 1 }));
-  }, [setFilters]);
+  const handleLimitChange = useCallback(
+    (e) => {
+      setFilters((prev) => ({
+        ...prev,
+        limit: Number(e.target.value),
+        page: 1,
+      }));
+    },
+    [setFilters]
+  );
 
   if (totalPages <= 1) return null;
 
@@ -52,8 +62,18 @@ const Pagination = memo(({ total, page, limit, setFilters }) => {
           disabled={page === 1}
           className="hidden sm:flex p-1.5 sm:p-2 rounded bg-[#12121a] border border-[#2a2a3e] text-gray-400 hover:bg-[#1a1a28] disabled:opacity-50"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
+            />
           </svg>
         </button>
 
@@ -62,8 +82,18 @@ const Pagination = memo(({ total, page, limit, setFilters }) => {
           disabled={page === 1}
           className="p-1.5 sm:p-2 rounded bg-[#12121a] border border-[#2a2a3e] text-gray-400 hover:bg-[#1a1a28] disabled:opacity-50"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
           </svg>
         </button>
 
@@ -87,8 +117,18 @@ const Pagination = memo(({ total, page, limit, setFilters }) => {
           disabled={page === totalPages}
           className="p-1.5 sm:p-2 rounded bg-[#12121a] border border-[#2a2a3e] text-gray-400 hover:bg-[#1a1a28] disabled:opacity-50"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
           </svg>
         </button>
 
@@ -97,8 +137,18 @@ const Pagination = memo(({ total, page, limit, setFilters }) => {
           disabled={page === totalPages}
           className="hidden sm:flex p-1.5 sm:p-2 rounded bg-[#12121a] border border-[#2a2a3e] text-gray-400 hover:bg-[#1a1a28] disabled:opacity-50"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M13 5l7 7-7 7M5 5l7 7-7 7"
+            />
           </svg>
         </button>
       </div>

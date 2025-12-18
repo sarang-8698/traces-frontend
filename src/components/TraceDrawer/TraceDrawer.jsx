@@ -73,8 +73,16 @@ const TraceDrawer = memo(({ trace, onClose }) => {
 
   const stats = [
     { label: "Run Steps", value: stableValues.runSteps, color: "text-white" },
-    { label: "LLM Calls", value: stableValues.llmCalls, color: "text-blue-400" },
-    { label: "Tool Calls", value: stableValues.toolCalls, color: "text-purple-400" },
+    {
+      label: "LLM Calls",
+      value: stableValues.llmCalls,
+      color: "text-blue-400",
+    },
+    {
+      label: "Tool Calls",
+      value: stableValues.toolCalls,
+      color: "text-purple-400",
+    },
   ];
 
   return (
@@ -98,8 +106,18 @@ const TraceDrawer = memo(({ trace, onClose }) => {
             className="p-2 hover:bg-[#1a1a28] rounded-lg text-gray-400 hover:text-white transition-colors"
             aria-label="Close drawer"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
@@ -115,22 +133,52 @@ const TraceDrawer = memo(({ trace, onClose }) => {
           >
             <div className="flex items-center gap-2">
               {trace.status === "success" ? (
-                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                <svg
+                  className="w-5 h-5 text-green-500"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               ) : (
-                <svg className="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                <svg
+                  className="w-5 h-5 text-red-500"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               )}
-              <span className={`font-medium ${trace.status === "success" ? "text-green-400" : "text-red-400"}`}>
-                {trace.status === "success" ? "Completed Successfully" : "Execution Failed"}
+              <span
+                className={`font-medium ${
+                  trace.status === "success" ? "text-green-400" : "text-red-400"
+                }`}
+              >
+                {trace.status === "success"
+                  ? "Completed Successfully"
+                  : "Execution Failed"}
               </span>
             </div>
             {trace.isAnomalous && (
               <div className="flex items-center gap-2 mt-2 text-yellow-400">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                <svg
+                  className="w-4 h-4"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                    clipRule="evenodd"
+                  />
                 </svg>
                 <span className="text-sm">Anomalous behavior detected</span>
               </div>
@@ -147,7 +195,9 @@ const TraceDrawer = memo(({ trace, onClose }) => {
                 (item) =>
                   item.value && (
                     <div key={item.label} className="flex justify-between p-3">
-                      <span className="text-gray-400 text-sm">{item.label}</span>
+                      <span className="text-gray-400 text-sm">
+                        {item.label}
+                      </span>
                       <span className="text-sm font-medium text-white truncate ml-4 max-w-[200px]">
                         {item.value}
                       </span>
@@ -168,7 +218,9 @@ const TraceDrawer = memo(({ trace, onClose }) => {
                   key={item.label}
                   className="bg-[#12121a] rounded-lg border border-[#2a2a3e] p-3 text-center hover:border-[#3a3a5e] transition-colors"
                 >
-                  <p className={`text-2xl font-bold ${item.color}`}>{item.value}</p>
+                  <p className={`text-2xl font-bold ${item.color}`}>
+                    {item.value}
+                  </p>
                   <p className="text-xs text-gray-400 mt-1">{item.label}</p>
                 </div>
               ))}
@@ -189,8 +241,18 @@ const TraceDrawer = memo(({ trace, onClose }) => {
                   </p>
                 </div>
                 <div className="text-center px-4">
-                  <svg className="w-6 h-6 text-gray-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  <svg
+                    className="w-6 h-6 text-gray-600 mx-auto"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    />
                   </svg>
                 </div>
                 <div className="text-right">
@@ -204,7 +266,9 @@ const TraceDrawer = memo(({ trace, onClose }) => {
                 <div className="flex justify-between items-center">
                   <span className="text-gray-400 text-sm">Total Tokens</span>
                   <span className="text-lg font-bold text-white">
-                    {(stableValues.inputTokens + stableValues.outputTokens).toLocaleString()}
+                    {(
+                      stableValues.inputTokens + stableValues.outputTokens
+                    ).toLocaleString()}
                   </span>
                 </div>
                 {/* Token bar visualization */}
@@ -212,14 +276,37 @@ const TraceDrawer = memo(({ trace, onClose }) => {
                   <div
                     className="bg-teal-500 h-full"
                     style={{
-                      width: `${(stableValues.inputTokens / (stableValues.inputTokens + stableValues.outputTokens)) * 100}%`,
+                      width: `${
+                        (stableValues.inputTokens /
+                          (stableValues.inputTokens +
+                            stableValues.outputTokens)) *
+                        100
+                      }%`,
                     }}
                   />
                   <div className="bg-teal-300 h-full flex-1" />
                 </div>
                 <div className="flex justify-between mt-1 text-[10px] text-gray-500">
-                  <span>Input ({Math.round((stableValues.inputTokens / (stableValues.inputTokens + stableValues.outputTokens)) * 100)}%)</span>
-                  <span>Output ({Math.round((stableValues.outputTokens / (stableValues.inputTokens + stableValues.outputTokens)) * 100)}%)</span>
+                  <span>
+                    Input (
+                    {Math.round(
+                      (stableValues.inputTokens /
+                        (stableValues.inputTokens +
+                          stableValues.outputTokens)) *
+                        100
+                    )}
+                    %)
+                  </span>
+                  <span>
+                    Output (
+                    {Math.round(
+                      (stableValues.outputTokens /
+                        (stableValues.inputTokens +
+                          stableValues.outputTokens)) *
+                        100
+                    )}
+                    %)
+                  </span>
                 </div>
               </div>
             </div>
@@ -250,12 +337,19 @@ const TraceDrawer = memo(({ trace, onClose }) => {
             >
               <span>Raw Trace JSON</span>
               <svg
-                className={`w-4 h-4 transition-transform ${showRawJson ? "rotate-180" : ""}`}
+                className={`w-4 h-4 transition-transform ${
+                  showRawJson ? "rotate-180" : ""
+                }`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </button>
             {showRawJson && (
@@ -266,12 +360,32 @@ const TraceDrawer = memo(({ trace, onClose }) => {
                   title="Copy to clipboard"
                 >
                   {copied ? (
-                    <svg className="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <svg
+                      className="w-4 h-4 text-green-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
                     </svg>
                   ) : (
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                      />
                     </svg>
                   )}
                 </button>
