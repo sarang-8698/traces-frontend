@@ -1,5 +1,5 @@
-const BASE_URL = "http://localhost:5000/api/traces";
-
+// const BASE_URL = "http://localhost:5000/api/traces";
+const BASE_URL = "https://traces-backend.onrender.com/api/traces";
 // Retry configuration
 const MAX_RETRIES = 3;
 const RETRY_DELAY = 1000;
